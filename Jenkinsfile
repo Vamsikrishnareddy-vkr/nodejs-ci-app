@@ -10,22 +10,21 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'npm test'
+                bat 'npm test'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build("nodejs-ci-app")
-                }
+                bat 'docker build -t nodejs-ci-app .'
             }
         }
     }
 }
+
