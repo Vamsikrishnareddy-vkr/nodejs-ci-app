@@ -16,15 +16,19 @@ pipeline {
 
         stage('Run Tests') {
             steps {
+                echo "Running tests..."
                 bat 'npm test'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t nodejs-ci-app .'
+                script {
+                    docker.build("nodejs-ci-app")
+                }
             }
         }
     }
 }
+
 
